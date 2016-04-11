@@ -1,0 +1,56 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	
+</head>
+
+<body>
+	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<script>
+		$(function() {
+	  $('#container').highcharts({
+	    chart: {
+	      type: 'column'
+	    },
+	    title: {
+	      text: 'Wisconsin primary sentiment analysis'
+	    },
+	    xAxis: {
+	      categories: ['Trump', 'Cruz', 'Clinton', 'Sanders', 'Kasich']
+	    },
+	    yAxis: {
+	      min: 0,
+	      title: {
+	        text: 'Sentiment'
+	      }
+	    },
+	    tooltip: {
+	      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>', 
+	      shared: true
+	    },
+	    plotOptions: {
+	      column: {
+	        stacking: 'percent'
+	      }
+	    },
+	    series: [{
+	      name: 'Positive',
+	      data: [4964, 6588 , 5359, 5662, 3944],
+	      color: "#51bc4d"
+	    }, {
+	      name: 'Neutral',
+	      data: [9468, 8576, 10435, 8728, 8011],
+	      color: "#0a9ac2"
+	    }, {
+	      name: 'Negative',
+	      data: [2503, 2554, 3101, 3374, 3426],
+	      color: "#ff3225"
+	    }]
+	  });
+	});
+	</script>
+</body>
+
+</html>
