@@ -1,3 +1,8 @@
 config.py
 *.pyc
+<<<<<<< HEAD
 env/
+=======
+env/
+venv/
+>>>>>>> 0a87dbed57077790be1d7c9a3e401b88ed948941
