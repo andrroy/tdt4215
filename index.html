@@ -1,55 +1,79 @@
 <html>
 <head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 
 <body>
-	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 style="text-align: center;">Sentiment Analysis</h1>
+				<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+			<h4>Facts</h4>
+				<ul>
+					<li>Tweets analyzed: 86.693</li>
+					<li>Avarage number of tweets per candidate: 17k</li>
+					<li>All tweets are from the day of the election (April 5, 2016)</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<script>
 		$(function() {
-	  $('#container').highcharts({
-	    chart: {
-	      type: 'column'
-	    },
-	    title: {
-	      text: 'Wisconsin primary sentiment analysis'
-	    },
-	    xAxis: {
-	      categories: ['Trump', 'Cruz', 'Clinton', 'Sanders', 'Kasich']
-	    },
-	    yAxis: {
-	      min: 0,
-	      title: {
-	        text: 'Sentiment'
-	      }
-	    },
-	    tooltip: {
-	      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>', 
-	      shared: true
-	    },
-	    plotOptions: {
-	      column: {
-	        stacking: 'percent'
-	      }
-	    },
-	    series: [{
-	      name: 'Positive',
-	      data: [4964, 6588 , 5359, 5662, 3944],
-	      color: "#51bc4d"
-	    }, {
-	      name: 'Neutral',
-	      data: [9468, 8576, 10435, 8728, 8011],
-	      color: "#0a9ac2"
-	    }, {
-	      name: 'Negative',
-	      data: [2503, 2554, 3101, 3374, 3426],
-	      color: "#ff3225"
-	    }]
-	  });
-	});
+			$('#container').highcharts({
+				chart: {
+					type: 'column'
+				},
+				title: {
+					text: 'Wisconsin primary sentiment analysis'
+				},
+				xAxis: {
+					categories: ['Trump', 'Cruz', 'Clinton', 'Sanders', 'Kasich']
+				},
+				yAxis: {
+					min: 0,
+					title: {
+						text: 'Sentiment'
+					}
+				},
+				tooltip: {
+					pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>', 
+					shared: true
+				},
+				plotOptions: {
+					column: {
+						stacking: 'percent'
+					}
+				},
+				series: [{
+					name: 'Positive',
+					data: [4964, 6588 , 5359, 5662, 3944],
+					color: "#51bc4d"
+				}, {
+					name: 'Neutral',
+					data: [9468, 8576, 10435, 8728, 8011],
+					color: "#0a9ac2"
+				}, {
+					name: 'Negative',
+					data: [2503, 2554, 3101, 3374, 3426],
+					color: "#ff3225"
+				}]
+			});
+		});
 	</script>
 </body>
 
