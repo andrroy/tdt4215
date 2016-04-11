@@ -38,9 +38,3 @@ for i in range(0, 449):
 		print "Sleeping..."
 		time.sleep(5)
 		pass
- 
-api = tweepy.API(auth)
-search = api.search(q='#lol', count=100, lang="en", since_id="2016-04-05", until="2016-04-05", geocode="43.053998,-87.946676,130km")
-
-for tweet in search:
-	print tweet.text, '\n'
