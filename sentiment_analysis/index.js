@@ -3,9 +3,12 @@ var mongoose = require('mongoose');
 var async = require('async');
 var Tweets = require('./tweets');
 
+var positive = 0;
+var neutral = 0;
+var negative = 0;
+
 var performAnalysis = function(tweets) {
 	async.eachSeries(tweets, function(tweet, done) {
-		// console.info("Processing tweet with id " + tweet._id);
 		// if(tweet.score) return done();
 
 		sentiment(tweet.text, function (err, result) {
@@ -13,29 +16,24 @@ var performAnalysis = function(tweets) {
 				console.error("Error on tweet with id " + tweet._id + ": " + err);
 				return done();
 			}
-			
-			console.log({
-				score: result.score,
-				candidate: tweet.candidate
-			});
-			return done();
-			// tweet.score = result.score;
 
-			// console.log(tweet._id);
-			// console.log(tweet.score);
-			// Tweets.findOneAndUpdate(tweet._id, {score: tweet.score}, function(err, doc){
-			// 	if(err) console.error('Error when updating tweet with id ' + tweet._id + ": " + err);
-			// 	console.log(doc.score);
-			// 	return done();
-			// });
-			// tweet.save(function(err) {
-			// 	console.log("ERROR: " + err);
-			// 	if(err) console.error('Error when updating tweet with id ' + tweet._id + ": " + err);
-			// 	return done();
-			// });
+			if(result.score <= -2) {
+				negative++;
+			}else if(result.score >= 2) {
+				positive++;
+			} else {
+				neutral++;
+			}
+			
+			
+			done();
+
 		});
 	}, function() {
 		console.info("Script completed");
+		console.log("positive: " + positive);
+		console.log("neutral: " + neutral);
+		console.log("negative: " + negative);
 		process.exit(0);
 	});
 }
@@ -46,7 +44,8 @@ mongoose.connect("mongodb://localhost/tdt4215", function (err, res) {
 		process.exit(1);
 	}
 
-	Tweets.find({}, function(err, tweets)  {
+
+	Tweets.find({candidate:"johnkasich"}, function(err, tweets)  {
 		performAnalysis(tweets);
 	});
 });
