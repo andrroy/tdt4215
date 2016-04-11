@@ -3,3 +3,4 @@ config.py
 env/
 .DS_Store
 node_modules/
+venv/
